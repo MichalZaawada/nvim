@@ -1,7 +1,21 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.g.mapleader = " "
+vim.opt.wrap = false
 
-if vim.g.vscode then
-    require("vscode_settings")
+local has = function(x)
+	return vim.fn.has(x) == 1
 end
+
+local is_mac = has "macunix"
+local is_win = has "win32"
+local is_vscode = vim.g.vscode
+
+if is_vscode then  
+	require("vscode")
+elseif is_mac then
+	require("mac")
+elseif is_win then
+	require("win")
+end
+
+require("keybindings")
