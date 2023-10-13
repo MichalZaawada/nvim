@@ -12,7 +12,7 @@ local is_vscode = vim.g.vscode
 
 require("keybindings")
 
-if is_vscode then  
+if is_vscode then
 	require("vscode")
 else
 	if is_mac then
@@ -22,6 +22,5 @@ else
 	end
 	require("plugin_configs")
 	require("plugin_keybindings")
-
 end
 
