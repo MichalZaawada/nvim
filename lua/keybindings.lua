@@ -24,10 +24,14 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- write
 keymap.set({'n', 'v'}, '<leader>w', vim.cmd.w)
 
+-- quit
+keymap.set({'n', 'v'}, '<leader>q', vim.cmd.q)
+
 if not is_vscode then
 	keymap.set({'n', 'v'}, '<C-j>', '<C-w>j')
 	keymap.set({'n', 'v'}, '<C-k>', '<C-w>k')
 	keymap.set({'n', 'v'}, '<C-h>', '<C-w>h')
 	keymap.set({'n', 'v'}, '<C-l>', '<C-w>l')
+
 end
 

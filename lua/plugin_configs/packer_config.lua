@@ -2,7 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
 	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'  
+	use 'wbthomason/packer.nvim'
 
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',
@@ -25,6 +25,15 @@ return require('packer').startup(function(use)
 		'williamboman/mason-lspconfig.nvim',
 		'neovim/nvim-lspconfig'
 	}
+
+	--lualine
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	}
+
+	--bufferline - tabs 
+	use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 
 	-- colorcheme
 	use { "catppuccin/nvim", as = "catppuccin" }
