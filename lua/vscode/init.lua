@@ -1,46 +1,36 @@
 -- Disable syntax highlighting
 vim.cmd("syntax off")
 
+local keymap = vim.keymap
+local vscode = vim.fn.VSCodeNotify
 -- Menus 
---vim.keymap.set('n', '<leader>ff', function() vim.fn.VSCodeNotify('workbench.action.quickOpen') end)
---vim.keymap.set('v', '<leader>ff', function() vim.fn.VSCodeNotify('workbench.action.quickOpen') end)
-
---vim.keymap.set('n', '<leader>fa', function() vim.fn.VSCodeNotify('workbench.action.showCommands') end)
---vim.keymap.set('v', '<leader>fa', function() vim.fn.VSCodeNotify('workbench.action.showCommands') end)
+keymap.set({'n', 'v'}, '<leader>ff', function() vscode('workbench.action.quickOpen') end)
+keymap.set({'n', 'v'}, '<leader>fa', function() vscode('workbench.action.showCommands') end)
 
 -- Movement
-vim.keymap.set('n', '<C-j>', function() vim.fn.VSCodeNotify('workbench.action.navigateDown') end)
-vim.keymap.set('v', '<C-j>', function() vim.fn.VSCodeNotify('workbench.action.navigateDown') end)
-vim.keymap.set('n', '<C-k>', function() vim.fn.VSCodeNotify('workbench.action.navigateUp') end)
-vim.keymap.set('v', '<C-k>', function() vim.fn.VSCodeNotify('workbench.action.navigateUp') end)
-vim.keymap.set('n', '<C-h>', function() vim.fn.VSCodeNotify('workbench.action.navigateLeft') end)
-vim.keymap.set('v', '<C-h>', function() vim.fn.VSCodeNotify('workbench.action.navigateLeft') end)
-vim.keymap.set('n', '<C-l>', function() vim.fn.VSCodeNotify('workbench.action.navigateRight') end)
-vim.keymap.set('v', '<C-l>', function() vim.fn.VSCodeNotify('workbench.action.navigateRight') end)
+keymap.set('n', '<C-j>', function() vscode('workbench.action.navigateDown') end)
+keymap.set('n', '<C-k>', function() vscode('workbench.action.navigateUp') end)
+keymap.set('n', '<C-h>', function() vscode('workbench.action.navigateLeft') end)
+keymap.set('n', '<C-l>', function() vscode('workbench.action.navigateRight') end)
 
-vim.keymap.set('n', '<Tab>', function() vim.fn.VSCodeNotify('workbench.action.nextEditorInGroup') end)
-vim.keymap.set('v', '<Tab>', function() vim.fn.VSCodeNotify('workbench.action.nextEditorInGroup') end)
+keymap.set({'n', 'v'}, '<Tab>', function() vscode('workbench.action.nextEditorInGroup') end)
+keymap.set({'n', 'v'}, '<S-Tab>', function() vscode('workbench.action.previousEditorInGroup') end)
 
-vim.keymap.set('n', '<S-Tab>', function() vim.fn.VSCodeNotify('workbench.action.previousEditorInGroup') end)
-vim.keymap.set('v', '<S-Tab>', function() vim.fn.VSCodeNotify('workbench.action.previousEditorInGroup') end)
 -- Toggle 
---vim.keymap.set('n', '<leader>tt', function() vim.fn.VSCodeNotify('workbench.action.terminal.toggleTerminal') end)
---vim.keymap.set('v', '<leader>tt', function() vim.fn.VSCodeNotify('workbench.action.terminal.toggleTerminal') end)
+keymap.set({'n', 'v'}, '<leader>tt', function() vscode('workbench.action.terminal.toggleTerminal') end)
 
 -- Go to 
---vim.keymap.set("n", "<leader>gr", function() vim.fn.VSCodeNotify("editor.action.goToReferences") end)
---vim.keymap.set("v", "<leader>gr", function() vim.fn.VSCodeNotify("editor.action.goToReferences") end)
+keymap.set({'n', 'v'}, "<leader>gr", function() vscode("editor.action.goToReferences") end)
 
---vim.keymap.set("n", "<leader>gd", function() vim.fn.VSCodeNotify("editor.action.revealDefinition") end)
---vim.keymap.set("v", "<leader>gd", function() vim.fn.VSCodeNotify("editor.action.revealDefinition") end)
+keymap.set({'n', 'v'}, "<leader>gd", function() vscode("editor.action.revealDefinition") end)
 
 -- Split 
---vim.keymap.set("n", "<leader>sv", function() vim.fn.VSCodeNotify("workbench.action.spliteditorRight") end)
---vim.keymap.set("v", "<leader>sv", function() vim.fn.VSCodeNotify("workbench.action.splitEditorRight") end)
+--keymap.set("n", "<leader>sv", function() vscode("workbench.action.spliteditorRight") end)
+--keymap.set("v", "<leader>sv", function() vscode("workbench.action.splitEditorRight") end)
 
---vim.keymap.set("n", "<leader>sh", function() vim.fn.VSCodeNotify("workbench.action.splitEditorDown") end)
---vim.keymap.set("v", "<leader>sh", function() vim.fn.VSCodeNotify("workbench.action.splitEditorDown") end)
+--keymap.set("n", "<leader>sh", function() vscode("workbench.action.splitEditorDown") end)
+--keymap.set("v", "<leader>sh", function() vscode("workbench.action.splitEditorDown") end)
 
 -- Closing
---vim.keymap.set("n", "<leader>q", function() vim.fn.VSCodeNotify("workbench.action.closeActiveEditor") end)
---vim.keymap.set("v", "<leader>q", function() vim.fn.VSCodeNotify("workbench.action.closeActiveEditor") end)
+--keymap.set("n", "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
+--keymap.set("v", "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
