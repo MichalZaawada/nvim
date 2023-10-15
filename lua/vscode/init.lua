@@ -1,6 +1,8 @@
 -- Disable syntax highlighting
 vim.cmd("syntax off")
 
+vim.g.mapleader = " "
+
 local keymap = vim.keymap
 local vscode = vim.fn.VSCodeNotify
 -- Menus 
@@ -25,12 +27,10 @@ keymap.set({'n', 'v'}, "<leader>gr", function() vscode("editor.action.goToRefere
 keymap.set({'n', 'v'}, "<leader>gd", function() vscode("editor.action.revealDefinition") end)
 
 -- Split 
---keymap.set("n", "<leader>sv", function() vscode("workbench.action.spliteditorRight") end)
---keymap.set("v", "<leader>sv", function() vscode("workbench.action.splitEditorRight") end)
-
---keymap.set("n", "<leader>sh", function() vscode("workbench.action.splitEditorDown") end)
---keymap.set("v", "<leader>sh", function() vscode("workbench.action.splitEditorDown") end)
+keymap.set({'n', 'v'}, "<leader>sl", function() vscode("workbench.action.spliteditorRight") end)
+keymap.set({'n', 'v'}, "<leader>sk", function() vscode("workbench.action.spliteditorUp") end)
+keymap.set({'n', 'v'}, "<leader>sj", function() vscode("workbench.action.spliteditorDown") end)
+keymap.set({'n', 'v'}, "<leader>sh", function() vscode("workbench.action.spliteditorLeft") end)
 
 -- Closing
---keymap.set("n", "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
---keymap.set("v", "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
+keymap.set({'n', 'v'}, "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
