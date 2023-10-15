@@ -1,4 +1,7 @@
 local keymap = vim.keymap
 
-keymap.set({'n', 'v'}, '<Tab>', vim.cmd.bnext)
-keymap.set({'n', 'v'}, '<S-Tab>', vim.cmd.bprevious)
+-- quit
+keymap.set({'n', 'v'}, '<leader>q', ':bp|bd #<CR>')
+
+keymap.set({'n', 'v'}, '<Tab>', vim.cmd.bn)
+keymap.set({'n', 'v'}, '<S-Tab>', vim.cmd.bp)
