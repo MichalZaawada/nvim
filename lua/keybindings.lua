@@ -20,14 +20,16 @@ keymap.set('n', 'x', '"_x')
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- write
-keymap.set({'n', 'v'}, '<leader>w', vim.cmd.w)
 
 -- yank to pc register
 keymap.set({"n", "v"}, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
 if not is_vscode then
+
+    -- write
+    keymap.set({'n', 'v'}, '<leader>w', vim.cmd.w)
+
     -- movement through windows
 	keymap.set({'n', 'v'}, '<C-j>', '<C-w>j')
 	keymap.set({'n', 'v'}, '<C-k>', '<C-w>k')

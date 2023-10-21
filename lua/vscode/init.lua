@@ -5,6 +5,7 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 local vscode = vim.fn.VSCodeNotify
+
 -- Menus 
 keymap.set({'n', 'v'}, '<leader>ff', function() vscode('workbench.action.quickOpen') end)
 keymap.set({'n', 'v'}, '<leader>fa', function() vscode('workbench.action.showCommands') end)
@@ -27,10 +28,17 @@ keymap.set({'n', 'v'}, "<leader>gr", function() vscode("editor.action.goToRefere
 keymap.set({'n', 'v'}, "<leader>gd", function() vscode("editor.action.revealDefinition") end)
 
 -- Split 
-keymap.set({'n', 'v'}, "<leader>sl", function() vscode("workbench.action.spliteditorRight") end)
-keymap.set({'n', 'v'}, "<leader>sk", function() vscode("workbench.action.spliteditorUp") end)
-keymap.set({'n', 'v'}, "<leader>sj", function() vscode("workbench.action.spliteditorDown") end)
-keymap.set({'n', 'v'}, "<leader>sh", function() vscode("workbench.action.spliteditorLeft") end)
+keymap.set({'n', 'v'}, "<leader>sl", function() vscode("workbench.action.splitEditorRight") end)
+keymap.set({'n', 'v'}, "<leader>sk", function() vscode("workbench.action.splitEditorUp") end)
+keymap.set({'n', 'v'}, "<leader>sj", function() vscode("workbench.action.splitEditorDown") end)
+keymap.set({'n', 'v'}, "<leader>sh", function() vscode("workbench.action.splitEditorLeft") end)
 
 -- Closing
-keymap.set({'n', 'v'}, "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
+-- keymap.set({'n', 'v'}, "<leader>q", function() vscode("workbench.action.closeActiveEditor") end)
+
+-- Saving
+keymap.set({'n', 'v'}, '<leader>w', function () vscode("workbench.action.files.save") end)
+
+-- Zooming font
+-- keymap.set({'n', 'v'}, "<C-n>", function() vscode("editor.action.fontZoomIn") end)
+-- keymap.set({'n', 'v'}, "<C-m>", function() vscode("editor.action.fontZoomOut") end)
