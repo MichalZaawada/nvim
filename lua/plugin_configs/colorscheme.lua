@@ -7,7 +7,9 @@ require("catppuccin").setup({
             mantle = "#16151c",
             crust = "#16151c",
             text = "#C6D0E5",
-            surface0 = "#43465A"
+            surface0 = "#43465A",
+            blue = "#007FFF",
+            lavender = "#B4BEFE"
         },
     },
 })
