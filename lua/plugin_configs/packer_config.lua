@@ -48,6 +48,11 @@ return require('packer').startup(function(use)
     use('hrsh7th/cmp-nvim-lsp')
     use('L3MON4D3/LuaSnip')
 
-	-- colorcheme
+    -- OmniSharp
+    use('OmniSharp/omnisharp-vim')
+
+	-- colorchemes
 	use { "catppuccin/nvim", as = "catppuccin" }
+	use { "NLKNguyen/papercolor-theme", as = "papercolor" }
+	use { "nanotech/jellybeans.vim", as = "jellybeans" }
 end)

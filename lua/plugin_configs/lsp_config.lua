@@ -4,14 +4,13 @@ lsp_zero.preset("recommended")
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {'lua_ls'},
+    ensure_installed = {'lua_ls' },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
-        end,
-
+        end
     },
 })
 
@@ -28,6 +27,16 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
+
+require('lspconfig').omnisharp.setup({
+    cmd = {"C:\\Users\\mzawada\\scoop\\apps\\omnisharp\\1.39.10\\OmniSharp.exe", "--languageserver" },
+    on_init = function(client)
+      client.server_capabilities.semanticTokensProvider = nil
+    end,
+})
+
+vim.g.OmniSharp_highlighting = 0
+vim.g.OmniSharp_server_use_net6 = 1
 
 lsp_zero.setup()
 
