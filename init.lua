@@ -19,6 +19,5 @@ else
 		require("win")
 	end
 	require("plugin_configs")
-	require("plugin_keybindings")
 end
 

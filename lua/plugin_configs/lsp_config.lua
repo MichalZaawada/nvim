@@ -1,3 +1,4 @@
+
 local lsp_zero = require("lsp-zero")
 
 lsp_zero.preset("recommended")
@@ -29,7 +30,7 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 require('lspconfig').omnisharp.setup({
-    cmd = {"C:\\Users\\mzawada\\scoop\\apps\\omnisharp\\1.39.10\\OmniSharp.exe", "--languageserver" },
+    cmd = {Omnisharp_path, "--languageserver" },
     on_init = function(client)
       client.server_capabilities.semanticTokensProvider = nil
     end,

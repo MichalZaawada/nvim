@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
+
 	-- lualine
 	use {
 		'nvim-lualine/lualine.nvim',
