@@ -5,7 +5,10 @@ lsp_zero.preset("recommended")
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {'lua_ls' },
+    ensure_installed = {
+        'lua_ls',
+        'clangd'
+    },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -29,18 +32,23 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-require('lspconfig').omnisharp.setup({
-    cmd = {Omnisharp_path, "--languageserver" },
-    on_init = function(client)
-      client.server_capabilities.semanticTokensProvider = nil
-    end,
-})
+--require('lspconfig').omnisharp.setup({
+--    cmd = {Omnisharp_path, "--languageserver" },
+--    on_init = function(client)
+--      client.server_capabilities.semanticTokensProvider = nil
+--    end,
+--})
 
 
-vim.g.OmniSharp_highlighting = 0
-vim.g.OmniSharp_server_use_net6 = 1
+--vim.g.OmniSharp_highlighting = 0
+--vim.g.OmniSharp_server_use_net6 = 1
 
 require('lspconfig').tsserver.setup({})
+
+--require('lspconfig').roslyn.setup({
+--    dotnet_cmd = "dotnet", -- this is the default
+--    roslyn_version = "4.8.0-3.23475.7", -- this is the default
+--})
 
 lsp_zero.setup()
 
