@@ -18,7 +18,7 @@ require('mason-lspconfig').setup({
     },
 })
 
-lsp_zero.on_attach(function(client, bufnr)
+local on_attach = (function(_, bufnr)
     local opts = {buffer = bufnr, remap = false}
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
@@ -32,6 +32,9 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+
+lsp_zero.on_attach(on_attach)
+
 --require('lspconfig').omnisharp.setup({
 --    cmd = {Omnisharp_path, "--languageserver" },
 --    on_init = function(client)
@@ -43,16 +46,17 @@ end)
 --vim.g.OmniSharp_highlighting = 0
 --vim.g.OmniSharp_server_use_net6 = 1
 
-require('lspconfig').tsserver.setup({})
+require('roslyn').setup({
+    dotnet_cmd = "dotnet",
+    roslyn_version = "4.8.0-3.23475.7",
+    on_attach = on_attach,
+    capabilities = nil
+})
 
---require('lspconfig').roslyn.setup({
---    dotnet_cmd = "dotnet", -- this is the default
---    roslyn_version = "4.8.0-3.23475.7", -- this is the default
---})
+require('lspconfig').tsserver.setup({})
 
 lsp_zero.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
-

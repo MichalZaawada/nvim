@@ -17,6 +17,9 @@
 --vim.cmd.colorscheme("catppuccin")
 --
 --vim.opt.background = 'dark'
+--
+--
 --vim.cmd.colorscheme("papercolor")
+--
 --
 vim.cmd.colorscheme("jellybeans")

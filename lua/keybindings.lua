@@ -14,7 +14,7 @@ keymap.set('n', '-', '<C-x>')
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 -- dont yank with x
-keymap.set('n', 'x', '"_x')
+keymap.set({'n', 'v'}, 'x', '"_x')
 
 -- moving lines in visual mode
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")

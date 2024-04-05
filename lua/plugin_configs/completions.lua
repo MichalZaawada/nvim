@@ -15,6 +15,7 @@ cmp.setup({
         ['<tab>'] = cmp.mapping.select_next_item(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-o>'] = cmp.mapping.complete(),
+
     })
 })
 

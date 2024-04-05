@@ -42,18 +42,20 @@ return require('packer').startup(function(use)
 	}
 
 	-- bufferline - tabs 
-	use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+	-- use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 
-    -- autocompletion
-    use('hrsh7th/nvim-cmp')
-    use('hrsh7th/cmp-nvim-lsp')
-    use('L3MON4D3/LuaSnip')
 
-    -- OmniSharp
-    use('OmniSharp/omnisharp-vim')
+    use('jmederosalvarado/roslyn.nvim')
 
 	-- colorchemes
 	use { "catppuccin/nvim", as = "catppuccin" }
 	use { "NLKNguyen/papercolor-theme", as = "papercolor" }
 	use { "nanotech/jellybeans.vim", as = "jellybeans" }
+	use { "Mofiqul/vscode.nvim" }
+
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
 end)
