@@ -5,7 +5,6 @@ if is_vscode then
 	require("code")
 else
 	-- Helpers
-
 	function TelescopeDependency()
 		if vim.fn.has("win32") == 1 then
 			return {
@@ -45,6 +44,7 @@ else
 	vim.g.maplocalleader = " "
 	vim.g.have_nerd_font = true
 	vim.opt.number = true
+	vim.opt.laststatus = 3
 	vim.opt.mouse = "a"
 	-- vim.opt.clipboard = 'unnamedplus'
 	vim.opt.relativenumber = true
@@ -344,6 +344,7 @@ else
 				--    That is to say, every time a new file is opened that is associated with
 				--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 				--    function will be executed to configure the current buffer
+
 				vim.api.nvim_create_autocmd("LspAttach", {
 					group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 					callback = function(event)
@@ -608,6 +609,36 @@ else
 							luasnip.lsp_expand(args.body)
 						end,
 					},
+					window = {
+						completion = {
+							---@diagnostic disable: assign-type-mismatch
+							border = {
+								{ "󱐋", "WarningMsg" },
+								{ "─", "Comment" },
+								{ "╮", "Comment" },
+								{ "│", "Comment" },
+								{ "╯", "Comment" },
+								{ "─", "Comment" },
+								{ "╰", "Comment" },
+								{ "│", "Comment" },
+							},
+							scrollbar = false,
+						},
+						documentation = {
+							border = {
+								{ "", "DiagnosticHint" },
+								{ "─", "Comment" },
+								{ "╮", "Comment" },
+								{ "│", "Comment" },
+								{ "╯", "Comment" },
+								{ "─", "Comment" },
+								{ "╰", "Comment" },
+								{ "│", "Comment" },
+							},
+							---@diagnostic enable: assign-type-mismatch
+							scrollbar = false,
+						},
+					},
 					completion = { completeopt = "menu,menuone,noinsert" },
 
 					-- For an understanding of why these mappings were
@@ -692,6 +723,7 @@ else
 			end,
 			config = function()
 				require("cyberdream").setup({
+					borderless_telescope = false,
 					theme = {
 						colors = {
 							bg = "#121212",
