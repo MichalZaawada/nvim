@@ -87,6 +87,9 @@ end)
 keymap.set({ "n", "v" }, "gi", function()
 	vscode("editor.action.goToImplementation")
 end)
+keymap.set({ "n", "v" }, "gt", function()
+	vscode("editor.action.goToTypeDefinition")
+end)
 
 -- Comment
 keymap.set({ "n", "v" }, "gc", function()
