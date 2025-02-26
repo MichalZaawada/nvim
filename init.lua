@@ -473,8 +473,6 @@ else
 					-- Some languages (like typescript) have entire language plugins that can be useful:
 					--    https://github.com/pmizio/typescript-tools.nvim
 					--
-					-- But for many setups, the LSP (`tsserver`) will work just fine
-					-- tsserver = {},
 					--
 					lua_ls = {
 						-- cmd = {...},
@@ -509,12 +507,17 @@ else
 				require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 				require("mason-lspconfig").setup({
+					ensure_installed = {},
+					automatic_installation = {},
 					handlers = {
+						-- NOTE: do usuniecia w przyszlosci
 						function(server_name)
+							if server_name == "tsserver" then
+								server_name = "ts_ls"
+							end
 							local server = servers[server_name] or {}
 							-- This handles overriding only values explicitly passed
 							-- by the server configuration above. Useful when disabling
-							-- certain features of an LSP (for example, turning off formatting for tsserver)
 							server.capabilities =
 								vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 							require("lspconfig")[server_name].setup(server)
@@ -1013,6 +1016,11 @@ else
 					end,
 				})
 			end,
+		},
+		{
+			"fridge.nvim",
+			name = "fridge.nvim",
+			dev = true,
 		},
 		-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 		-- init.lua. If you want these files, they are in the repository, so you can just download them and
