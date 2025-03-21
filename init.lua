@@ -155,7 +155,6 @@ else
 				},
 			},
 		},
-
 		{ -- Useful plugin to show you pending keybinds.
 			"folke/which-key.nvim",
 			event = "VimEnter", -- Sets the loading event to 'VimEnter'
@@ -883,6 +882,7 @@ else
 				},
 			},
 		},
+		{ "github/copilot.vim" },
 		{
 			"nvim-neo-tree/neo-tree.nvim",
 			branch = "v3.x",
