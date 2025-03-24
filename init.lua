@@ -146,13 +146,13 @@ else
 		{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 			"lewis6991/gitsigns.nvim",
 			opts = {
-				signs = {
-					add = { text = "+" },
-					change = { text = "~" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-				},
+				-- signs = {
+				-- 	add = { text = "+" },
+				-- 	change = { text = "~" },
+				-- 	delete = { text = "_" },
+				-- 	topdelete = { text = "‾" },
+				-- 	changedelete = { text = "~" },
+				-- },
 			},
 		},
 		{ -- Useful plugin to show you pending keybinds.
@@ -293,8 +293,19 @@ else
 				end, { desc = "[S]earch [N]eovim files" })
 			end,
 		},
-
 		{ -- LSP Configuration & Plugins
+			-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+			-- used for completion, annotations and signatures of Neovim apis
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
+		{
 			"neovim/nvim-lspconfig",
 			dependencies = {
 				-- Automatically install LSPs and related tools to stdpath for Neovim
@@ -1034,7 +1045,7 @@ else
 		-- require 'kickstart.plugins.debug',
 		-- require 'kickstart.plugins.indent_line',
 		-- require 'kickstart.plugins.lint',
-		-- require 'kickstart.plugins.autopairs',
+		require("kickstart.plugins.autopairs"),
 		-- require 'kickstart.plugins.neo-tree',
 		-- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
@@ -1044,7 +1055,7 @@ else
 		--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 		--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 		-- { import = 'custom.plugins' },
-	}, {
+	}, { ---@diagnostic disable-line: missing-fields
 		ui = {
 			-- If you are using a Nerd Font: set icons to an empty table which will use the
 			-- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
