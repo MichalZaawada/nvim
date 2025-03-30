@@ -11,11 +11,12 @@ else
 				"nvim-lua/plenary.nvim",
 				{
 					"nvim-telescope/telescope-fzf-native.nvim",
-					build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+					build =
+					"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 				},
 				{ "nvim-telescope/telescope-ui-select.nvim" },
 				-- Useful for getting pretty icons, but requires a Nerd Font.
-				{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+				{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
 			}
 		else
 			return {
@@ -34,7 +35,7 @@ else
 				{ "nvim-telescope/telescope-ui-select.nvim" },
 
 				-- Useful for getting pretty icons, but requires a Nerd Font.
-				{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+				{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
 			}
 		end
 	end
@@ -66,6 +67,8 @@ else
 	vim.opt.softtabstop = 4
 	vim.opt.shiftwidth = 4
 	vim.opt.hlsearch = true
+	vim.diagnostic.config({ virtual_lines = { current_line = true } })
+
 
 	vim.api.nvim_create_autocmd("TextYankPost", {
 		desc = "Highlight when yanking (copying) text",
@@ -155,7 +158,7 @@ else
 				-- },
 			},
 		},
-		{ -- Useful plugin to show you pending keybinds.
+		{              -- Useful plugin to show you pending keybinds.
 			"folke/which-key.nvim",
 			event = "VimEnter", -- Sets the loading event to 'VimEnter'
 			opts = {
@@ -196,7 +199,7 @@ else
 					},
 				},
 				spec = {
-					{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
+					{ "<leader>c", group = "[C]ode",     mode = { "n", "x" } },
 					{ "<leader>d", group = "[D]ocument" },
 					{ "<leader>r", group = "[R]ename" },
 					{ "<leader>p", group = "S[p]lit" },
@@ -318,11 +321,11 @@ else
 
 				-- Useful status updates for LSP.
 				-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-				{ "j-hui/fidget.nvim", opts = {} },
+				{ "j-hui/fidget.nvim",                         opts = {} },
 
 				-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 				-- used for completion, annotations and signatures of Neovim apis
-				{ "folke/neodev.nvim", opts = {} },
+				{ "folke/neodev.nvim",                         opts = {} },
 			},
 			config = function()
 				-- Brief aside: **What is LSP?**
@@ -662,7 +665,7 @@ else
 						-- Select the [n]ext item
 						["<C-n>"] = cmp.mapping.select_next_item(),
 						-- Select the [p]revious item
-						["<C-b>"] = cmp.mapping.select_prev_item(),
+						["<C-p>"] = cmp.mapping.select_prev_item(),
 
 						-- Scroll the documentation window [b]ack / [f]orward
 						["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -1014,7 +1017,7 @@ else
 				local events = require("neo-tree.events")
 				opts.event_handlers = opts.event_handlers or {}
 				vim.list_extend(opts.event_handlers, {
-					{ event = events.FILE_MOVED, handler = on_move },
+					{ event = events.FILE_MOVED,   handler = on_move },
 					{ event = events.FILE_RENAMED, handler = on_move },
 				})
 				require("neo-tree").setup(opts)
@@ -1028,11 +1031,11 @@ else
 				})
 			end,
 		},
-		{
-			"fridge.nvim",
-			name = "fridge.nvim",
-			dev = true,
-		},
+		-- {
+		-- 	"fridge.nvim",
+		-- 	name = "fridge.nvim",
+		-- 	dev = true,
+		-- },
 		-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 		-- init.lua. If you want these files, they are in the repository, so you can just download them and
 		-- place them in the correct locations.
