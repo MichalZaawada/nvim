@@ -5,18 +5,24 @@ if is_vscode then
 	require("code")
 else
 	-- Helpers
+	function AvanteBuildCommand()
+		if vim.fn.has("win32") == 1 then
+			return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+		else
+			return "make"
+		end
+	end
 	function TelescopeDependency()
 		if vim.fn.has("win32") == 1 then
 			return {
 				"nvim-lua/plenary.nvim",
 				{
 					"nvim-telescope/telescope-fzf-native.nvim",
-					build =
-					"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+					build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 				},
 				{ "nvim-telescope/telescope-ui-select.nvim" },
 				-- Useful for getting pretty icons, but requires a Nerd Font.
-				{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
+				{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 			}
 		else
 			return {
@@ -35,7 +41,7 @@ else
 				{ "nvim-telescope/telescope-ui-select.nvim" },
 
 				-- Useful for getting pretty icons, but requires a Nerd Font.
-				{ "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
+				{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 			}
 		end
 	end
@@ -68,7 +74,6 @@ else
 	vim.opt.shiftwidth = 4
 	vim.opt.hlsearch = true
 	vim.diagnostic.config({ virtual_lines = { current_line = true } })
-
 
 	vim.api.nvim_create_autocmd("TextYankPost", {
 		desc = "Highlight when yanking (copying) text",
@@ -158,7 +163,7 @@ else
 				-- },
 			},
 		},
-		{              -- Useful plugin to show you pending keybinds.
+		{ -- Useful plugin to show you pending keybinds.
 			"folke/which-key.nvim",
 			event = "VimEnter", -- Sets the loading event to 'VimEnter'
 			opts = {
@@ -199,7 +204,7 @@ else
 					},
 				},
 				spec = {
-					{ "<leader>c", group = "[C]ode",     mode = { "n", "x" } },
+					{ "<leader>c", group = "[C]ode", mode = { "n", "x" } },
 					{ "<leader>d", group = "[D]ocument" },
 					{ "<leader>r", group = "[R]ename" },
 					{ "<leader>p", group = "S[p]lit" },
@@ -321,11 +326,11 @@ else
 
 				-- Useful status updates for LSP.
 				-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-				{ "j-hui/fidget.nvim",                         opts = {} },
+				{ "j-hui/fidget.nvim", opts = {} },
 
 				-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 				-- used for completion, annotations and signatures of Neovim apis
-				{ "folke/neodev.nvim",                         opts = {} },
+				{ "folke/neodev.nvim", opts = {} },
 			},
 			config = function()
 				-- Brief aside: **What is LSP?**
@@ -901,6 +906,72 @@ else
 		},
 		{ "github/copilot.vim" },
 		{
+			"yetone/avante.nvim",
+			event = "VeryLazy",
+			lazy = false,
+			version = false, -- set this if you want to always pull the latest change
+			opts = {
+				-- add any opts here
+			},
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+				"nvim-telescope/telescope.nvim",
+				"stevearc/dressing.nvim",
+				"hrsh7th/nvim-cmp",
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+				{
+					"MeanderingProgrammer/render-markdown.nvim",
+					opts = { file_types = { "markdown", "Avante" } },
+					ft = { "markdown", "Avante" },
+				},
+			},
+			build = AvanteBuildCommand(),
+			---@class avante.Config
+			opts = {
+				provider = "copilot",
+				vendors = {
+					-- Available
+					copilot_claude = {
+						__inherited_from = "copilot",
+						model = "claude-3.7-sonnet",
+					},
+					-- Unavailable
+					copilot_claude_thinking = {
+						__inherited_from = "copilot",
+						model = "claude-3.7-sonnet-thought",
+					},
+					-- Available
+					copilot_o1 = {
+						__inherited_from = "copilot",
+						model = "o1",
+					},
+					-- Available
+					copilot_o3_mini = {
+						__inherited_from = "copilot",
+						model = "o3-mini",
+					},
+					-- Unavailable
+					copilot_gemini = {
+						__inherited_from = "copilot",
+						model = "gemini-2.0-flash-001",
+					},
+				},
+				windows = {
+					ask = {
+						start_insert = false, -- Start insert mode when opening the ask window
+					},
+				},
+				mappings = {
+					sidebar = {
+						switch_windows = "<leader>0",
+						reverse_switch_windows = "<leader>9",
+					},
+				},
+			},
+			keys = {},
+		},
+		{
 			"nvim-neo-tree/neo-tree.nvim",
 			branch = "v3.x",
 			cmd = "Neotree",
@@ -1017,7 +1088,7 @@ else
 				local events = require("neo-tree.events")
 				opts.event_handlers = opts.event_handlers or {}
 				vim.list_extend(opts.event_handlers, {
-					{ event = events.FILE_MOVED,   handler = on_move },
+					{ event = events.FILE_MOVED, handler = on_move },
 					{ event = events.FILE_RENAMED, handler = on_move },
 				})
 				require("neo-tree").setup(opts)
