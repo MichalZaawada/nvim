@@ -209,7 +209,7 @@ else
 					{ "<leader>r", group = "[R]ename" },
 					{ "<leader>p", group = "S[p]lit" },
 					{ "<leader>s", group = "[S]earch" },
-					{ "<leader>w", group = "[W]orkspace" },
+					{ "<leader>w", group = "[W]rite" },
 					{ "<leader>t", group = "[T]oggle" },
 					-- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
 				},
@@ -327,10 +327,6 @@ else
 				-- Useful status updates for LSP.
 				-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 				{ "j-hui/fidget.nvim", opts = {} },
-
-				-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-				-- used for completion, annotations and signatures of Neovim apis
-				{ "folke/neodev.nvim", opts = {} },
 			},
 			config = function()
 				-- Brief aside: **What is LSP?**
@@ -399,9 +395,9 @@ else
 						-- Fuzzy find all the symbols in your current workspace.
 						--  Similar to document symbols, except searches over your entire project.
 						map(
-							"<leader>ws",
+							"<leader>ss",
 							require("telescope.builtin").lsp_dynamic_workspace_symbols,
-							"[W]orkspace [S]ymbols"
+							"[S]earch [S]ymbols"
 						)
 
 						-- Rename the variable under your cursor.
@@ -905,72 +901,72 @@ else
 			},
 		},
 		{ "github/copilot.vim" },
-		{
-			"yetone/avante.nvim",
-			event = "VeryLazy",
-			lazy = false,
-			version = false, -- set this if you want to always pull the latest change
-			opts = {
-				-- add any opts here
-			},
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
-				"nvim-telescope/telescope.nvim",
-				"stevearc/dressing.nvim",
-				"hrsh7th/nvim-cmp",
-				"nvim-lua/plenary.nvim",
-				"MunifTanjim/nui.nvim",
-				{
-					"MeanderingProgrammer/render-markdown.nvim",
-					opts = { file_types = { "markdown", "Avante" } },
-					ft = { "markdown", "Avante" },
-				},
-			},
-			build = AvanteBuildCommand(),
-			---@class avante.Config
-			opts = {
-				provider = "copilot",
-				vendors = {
-					-- Available
-					copilot_claude = {
-						__inherited_from = "copilot",
-						model = "claude-3.7-sonnet",
-					},
-					-- Unavailable
-					copilot_claude_thinking = {
-						__inherited_from = "copilot",
-						model = "claude-3.7-sonnet-thought",
-					},
-					-- Available
-					copilot_o1 = {
-						__inherited_from = "copilot",
-						model = "o1",
-					},
-					-- Available
-					copilot_o3_mini = {
-						__inherited_from = "copilot",
-						model = "o3-mini",
-					},
-					-- Unavailable
-					copilot_gemini = {
-						__inherited_from = "copilot",
-						model = "gemini-2.0-flash-001",
-					},
-				},
-				windows = {
-					ask = {
-						start_insert = false, -- Start insert mode when opening the ask window
-					},
-				},
-				mappings = {
-					sidebar = {
-						switch_windows = "<leader>0",
-						reverse_switch_windows = "<leader>9",
-					},
-				},
-			},
-			keys = {},
-		},
+		-- {
+		-- 	"yetone/avante.nvim",
+		-- 	event = "VeryLazy",
+		-- 	lazy = false,
+		-- 	version = false, -- set this if you want to always pull the latest change
+		-- 	opts = {
+		-- 		-- add any opts here
+		-- 	},
+		-- 	dependencies = {
+		-- 		"nvim-treesitter/nvim-treesitter",
+		-- 		"nvim-telescope/telescope.nvim",
+		-- 		"stevearc/dressing.nvim",
+		-- 		"hrsh7th/nvim-cmp",
+		-- 		"nvim-lua/plenary.nvim",
+		-- 		"MunifTanjim/nui.nvim",
+		-- 		{
+		-- 			"MeanderingProgrammer/render-markdown.nvim",
+		-- 			opts = { file_types = { "markdown", "Avante" } },
+		-- 			ft = { "markdown", "Avante" },
+		-- 		},
+		-- 	},
+		-- 	build = AvanteBuildCommand(),
+		-- 	---@class avante.Config
+		-- 	opts = {
+		-- 		provider = "copilot",
+		-- 		vendors = {
+		-- 			-- Available
+		-- 			copilot_claude = {
+		-- 				__inherited_from = "copilot",
+		-- 				model = "claude-3.7-sonnet",
+		-- 			},
+		-- 			-- Unavailable
+		-- 			copilot_claude_thinking = {
+		-- 				__inherited_from = "copilot",
+		-- 				model = "claude-3.7-sonnet-thought",
+		-- 			},
+		-- 			-- Available
+		-- 			copilot_o1 = {
+		-- 				__inherited_from = "copilot",
+		-- 				model = "o1",
+		-- 			},
+		-- 			-- Available
+		-- 			copilot_o3_mini = {
+		-- 				__inherited_from = "copilot",
+		-- 				model = "o3-mini",
+		-- 			},
+		-- 			-- Unavailable
+		-- 			copilot_gemini = {
+		-- 				__inherited_from = "copilot",
+		-- 				model = "gemini-2.0-flash-001",
+		-- 			},
+		-- 		},
+		-- 		windows = {
+		-- 			ask = {
+		-- 				start_insert = false, -- Start insert mode when opening the ask window
+		-- 			},
+		-- 		},
+		-- 		mappings = {
+		-- 			sidebar = {
+		-- 				switch_windows = "<leader>0",
+		-- 				reverse_switch_windows = "<leader>9",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- 	keys = {},
+		-- },
 		{
 			"nvim-neo-tree/neo-tree.nvim",
 			branch = "v3.x",
