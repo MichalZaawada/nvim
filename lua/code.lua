@@ -34,26 +34,45 @@ keymap.set({ "n", "v" }, "<leader>sa", function()
 	vscode("workbench.action.showCommands")
 end)
 
-keymap.set({ "n", "v" }, "<leader>/", function()
-	vscode("workbench.actions.find")
+keymap.set({ "n", "v" }, "<leader>sg", function()
+	vscode("workbench.action.findInFiles")
 end)
 
-keymap.set({ "n", "v" }, "<leader>sw", function()
-	vscode("workbench.action.findInFiles")
+keymap.set({ "n", "v" }, "<leader>sp", function()
+	vscode("workbench.action.openRecent")
+end)
+
+keymap.set({ "n", "v" }, "<leader>/", function()
+	vscode("workbench.actions.find")
 end)
 
 --Toggle
 keymap.set({ "n", "v" }, "<leader>te", function()
 	vscode("workbench.view.explorer")
 end)
+
 keymap.set({ "n", "v" }, "<leader>tt", function()
 	vscode("workbench.action.terminal.toggleTerminal")
 end)
+
 keymap.set({ "n", "v" }, "<leader>tz", function()
 	vscode("workbench.action.toggleZenMode")
 end)
+
+keymap.set({ "n", "v" }, "<leader>tc", function()
+	vscode("workbench.action.chat.open")
+end)
+
 keymap.set({ "n", "v" }, "<leader>e", function()
 	vscode("workbench.actions.view.problems")
+end)
+
+keymap.set({ "n", "v" }, "<leader>a", function()
+	vscode("workbench.action.pinEditor")
+end)
+
+keymap.set({ "n", "v" }, "<leader>A", function()
+	vscode("workbench.action.unpinEditor")
 end)
 
 -- Movement
@@ -70,12 +89,12 @@ keymap.set("n", "<C-l>", function()
 	vscode("workbench.action.navigateRight")
 end)
 
-keymap.set({ "n", "v" }, "<Tab>", function()
-	vscode("workbench.action.nextEditorInGroup")
-end)
-keymap.set({ "n", "v" }, "<S-Tab>", function()
-	vscode("workbench.action.previousEditorInGroup")
-end)
+-- keymap.set({ "n", "v" }, "<C-Tab>", function()
+-- 	vscode("workbench.action.nextEditorInGroup")
+-- end)
+-- keymap.set({ "n", "v" }, "<C-S-Tab>", function()
+-- 	vscode("workbench.action.previousEditorInGroup")
+-- end)
 
 -- Go to
 keymap.set({ "n", "v" }, "gr", function()
@@ -92,12 +111,12 @@ keymap.set({ "n", "v" }, "gt", function()
 end)
 
 -- Comment
-keymap.set({ "n", "v" }, "gc", function()
-	vscode("editor.action.commentLine")
-end)
+-- keymap.set({ "n", "v" }, "gc", function()
+-- 	vscode("editor.action.commentLine")
+-- end)
 
 -- Code action
-keymap.set({ "n" }, "<leader>ca", function()
+keymap.set({ "n" }, "g.", function()
 	vscode("editor.action.quickFix")
 end)
 
@@ -112,6 +131,7 @@ end)
 -- keymap.set({ "n", "v" }, "<leader>pk", function()
 -- 	vscode("workbench.action.splitEditorUp")
 -- end)
+
 keymap.set({ "n", "v" }, "<leader>ph", function()
 	vscode("workbench.action.splitEditorDown")
 end)
@@ -120,8 +140,13 @@ keymap.set({ "n", "v" }, "<leader>pv", function()
 end)
 
 -- Closing
-keymap.set({ "n", "v" }, "<leader>q", function()
+keymap.set({ "n", "v" }, "<C-w>", function()
 	vscode("workbench.action.closeActiveEditor")
+end)
+
+-- Copilot
+keymap.set({ "n", "v" }, "<leader>c", function()
+	vscode("inlineChat.start")
 end)
 
 -- Saving
